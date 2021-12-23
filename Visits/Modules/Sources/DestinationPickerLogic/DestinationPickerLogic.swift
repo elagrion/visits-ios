@@ -1,22 +1,30 @@
 import AppArchitecture
 import ComposableArchitecture
-import NonEmpty
 import Types
 import Utility
 
+
+func reverseGeocode<Action>(
+  rge: @escaping (Coordinate) -> Effect<GeocodedResult, Never>,
+  toA: @escaping (GeocodedResult) -> Action,
+  main: AnySchedulerOf<DispatchQueue>
+) -> (Coordinate) -> Effect<Action, Never> {
+  { c in
+    rge(c)
+      .map(toA)
+      .receive(on: main)
+      .eraseToEffect()
+  }
+}
+
 public struct DestinationPickerState: Equatable {
   
-  public enum Flow: Equatable {
-    case address
-    case map
-  }
-  
-  public var flow: Flow
+  public var flow: DestinationPickerFlow
   public var place: GeoCodedResult?
 }
 
 public enum DestinationPickerAction {
-  case changeFlow(DestinationPickerState.Flow)
+  case changeFlow(DestinationPickerFlow)
   case pickAddress(Address)
   case pickCoordinate(Coordinate)
   case addressAction(ChoosingAddressAction)

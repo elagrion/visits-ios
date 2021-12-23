@@ -1,4 +1,5 @@
 import SwiftUI
+import ComposableArchitecture
 
 // MARK: - DeliveryCell
 
@@ -123,7 +124,8 @@ public struct EditContentCell: View {
   @Environment(\.colorScheme) var colorScheme
   
   private let title: String
-  @State private var subTitle: String
+  @State var subTitle: String = ""
+
   private let leadingPadding: CGFloat
   private let onEditAction: (String) -> Void
 
@@ -133,7 +135,6 @@ public struct EditContentCell: View {
     leadingPadding: CGFloat = 24.0,
     _ onEditAction: @escaping (String) -> Void) {
     self.title = title
-    self.subTitle = subTitle
     self.leadingPadding = leadingPadding
     self.onEditAction = onEditAction
   }
@@ -160,4 +161,3 @@ public struct EditContentCell: View {
     .padding(.top, 8)
   }
 }
-

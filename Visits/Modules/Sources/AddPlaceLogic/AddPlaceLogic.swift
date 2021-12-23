@@ -3,7 +3,7 @@ import ComposableArchitecture
 import NonEmpty
 import Types
 import Utility
-import DestinationPicker
+import DestinationPickerLogic
 
 
 // MARK: - State

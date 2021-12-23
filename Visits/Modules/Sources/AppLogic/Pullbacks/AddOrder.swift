@@ -6,21 +6,6 @@ import Types
 import AddOrderLogic
 
 
-struct AddOrder
-  public enum Flow: Equatable {
-    case order(OrderRequest)
-    case trip(TripRequest)
-  }
-  public var addOrderFlow: Flow
-  public var destinationPickerFlow: DestinationPickerState.Flow?
-
-  public init(addOrderFlow: Flow, destinationPickerFlow: DestinationPickerState.Flow?) {
-    self.addOrderFlow = addOrderFlow
-    self.destinationPickerFlow = destinationPickerFlow
-  }
-}
-
-
 let addOrderP: Reducer<
   AppState,
   AppAction,

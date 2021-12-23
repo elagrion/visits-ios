@@ -3,10 +3,9 @@ import ComposableArchitecture
 import Types
 import Utility
 
-
 // MARK: - Action
 
-enum ChoosingCoordinateAction: Equatable {
+public enum ChoosingCoordinateAction: Equatable {
   case liftedAddPlaceCoordinatePin
   case reverseGeocoded(GeocodedResult)
   case updatedAddPlaceCoordinate(Coordinate)

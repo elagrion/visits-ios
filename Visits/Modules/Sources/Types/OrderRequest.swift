@@ -1,6 +1,5 @@
 import Foundation
 
-
 public struct OrderRequest {
   public var id: Order.ID?
   public var createdAt: Date?
@@ -48,3 +47,23 @@ public struct TripRequest {
 extension TripRequest: Equatable {}
 extension TripRequest: Hashable {}
 extension TripRequest: Identifiable {}
+
+public enum DestinationPickerFlow: Equatable {
+  case address
+  case map
+}
+
+public struct AddOrder: Equatable {
+  public enum Flow: Equatable {
+    case order(OrderRequest)
+    case trip(TripRequest)
+  }
+
+  public var addOrderFlow: Flow
+  public var destinationPickerFlow: DestinationPickerFlow?
+
+  public init(addOrderFlow: Flow, destinationPickerFlow: DestinationPickerFlow?) {
+    self.addOrderFlow = addOrderFlow
+    self.destinationPickerFlow = destinationPickerFlow
+  }
+}

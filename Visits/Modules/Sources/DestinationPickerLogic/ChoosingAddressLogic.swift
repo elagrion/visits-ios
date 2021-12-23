@@ -7,7 +7,7 @@ import Utility
 
 // MARK: - Action
 
-enum ChoosingAddressAction: Equatable {
+public enum ChoosingAddressAction: Equatable {
   case cancelConfirmingLocation
   case localSearchCompletionResultsUpdated([LocalSearchCompletion])
   case localSearchUpdatedWithResult(MapPlace)
